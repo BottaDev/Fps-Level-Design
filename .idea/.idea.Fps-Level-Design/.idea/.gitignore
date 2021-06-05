@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/projectSettingsUpdater.xml
+/modules.xml
+/.idea.Fps-Level-Design.iml
+# Datasource local storage ignored files
+/../../../../../../../:\UNITY PROJECTS\UNITY REPOS\Fps-Level-Design\.idea\.idea.Fps-Level-Design\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
