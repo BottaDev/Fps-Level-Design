@@ -206,10 +206,10 @@ namespace Unity.FPS.Gameplay
             }
 
             // crouching
-            if (m_InputHandler.GetCrouchInputDown())
+            /*if (m_InputHandler.GetCrouchInputDown())
             {
                 SetCrouchingState(!IsCrouching, false);
-            }
+            }*/
 
             UpdateCharacterHeight(false);
 
