@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Unity.FPS.Game
 {
@@ -27,16 +28,19 @@ namespace Unity.FPS.Game
         [Header("Lose")] [Tooltip("This string has to be the name of the scene you want to load when losing")]
         public string LoseSceneName = "LoseScene";
 
-
+        public Text timer;
+        
         public bool GameIsEnding { get; private set; }
 
         float m_TimeLoadEndGameScene;
         string m_SceneToLoad;
+        private Scene _currentScene;
 
         void Awake()
         {
             EventManager.AddListener<AllObjectivesCompletedEvent>(OnAllObjectivesCompleted);
             EventManager.AddListener<PlayerDeathEvent>(OnPlayerDeath);
+            _currentScene = SceneManager.GetActiveScene();
         }
 
         void Start()
@@ -56,12 +60,22 @@ namespace Unity.FPS.Game
                 // See if it's time to load the end scene (after the delay)
                 if (Time.time >= m_TimeLoadEndGameScene)
                 {
+                    SaveTime();
                     SceneManager.LoadScene(m_SceneToLoad);
                     GameIsEnding = false;
                 }
             }
+            else if (_currentScene.name == "Level")
+            {
+                timer.text = Time.timeSinceLevelLoad.ToString("0.00");   
+            }
         }
 
+        private void SaveTime()
+        {
+            PlayerPrefs.SetFloat("Time", float.Parse(timer.text));
+        }
+        
         void OnAllObjectivesCompleted(AllObjectivesCompletedEvent evt) => EndGame(true);
         void OnPlayerDeath(PlayerDeathEvent evt) => EndGame(false);
 
