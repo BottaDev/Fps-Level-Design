@@ -65,7 +65,7 @@ namespace Unity.FPS.Game
                     GameIsEnding = false;
                 }
             }
-            else if (_currentScene.name == "Level")
+            else if (_currentScene.name == "Level" || _currentScene.name == "Level2")
             {
                 timer.text = Time.timeSinceLevelLoad.ToString("0.00");   
             }
